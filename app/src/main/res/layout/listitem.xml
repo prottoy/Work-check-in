@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="15dp"
+        android:text="Mahbub Morshed"
+        android:textSize="18sp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_below="@+id/name"
+        android:text="+8801534518314"
+        android:textSize="14sp"
+        android:textColor="#000000"/>
+
+    <!--<Button-->
+        <!--android:layout_width="44dip"-->
+        <!--android:layout_height="44dip"-->
+        <!--android:id="@+id/messagebtn"-->
+        <!--android:layout_marginLeft="22dip"-->
+        <!--android:layout_alignTop="@+id/callbtn"-->
+        <!--android:layout_toLeftOf="@+id/callbtn"-->
+        <!--android:layout_toStartOf="@+id/callbtn"-->
+        <!--android:background="@drawable/message" />-->
+</RelativeLayout>
