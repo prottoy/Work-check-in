@@ -26,19 +26,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <!--<meta-data-->
-                <!--android:name="android.support.UI_OPTIONS"-->
-                <!--android:value="splitActionBarWhenNarrow" />-->
         </activity>
+
         <activity
             android:name=".ContactDetail"
             android:label="@string/title_activity_contact_detail"
             android:parentActivityName=".Contacts" >
-            <!--<meta-data-->
-                <!--android:name="android.support.UI_OPTIONS"-->
-                <!--android:value="splitActionBarWhenNarrow" />-->
         </activity>
+
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings"

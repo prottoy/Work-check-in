@@ -36,16 +36,17 @@ public class Contacts extends Activity {
         actionBar.setTitle("People");
         actionBar.setIcon(R.drawable.ic_launcher);
 
+
 //        ActionBar.Tab tab = actionBar.newTab()
-//                .setText("People")
-//                .setTabListener(new TabListener<ArtistFragment>(
-//                        this, "artist", ArtistFragment.class));
+//                .setText("Check-ins")
+//                .setTabListener(new TabListener<CheckInListFragment>(
+//                        this, "artist", CheckInListFragment.class));
 //        actionBar.addTab(tab);
 //
 //        tab = actionBar.newTab()
-//                .setText(R.string.album)
-//                .setTabListener(new TabListener<AlbumFragment>(
-//                        this, "album", AlbumFragment.class));
+//                .setText("Contacts")
+//                .setTabListener(new TabListener<ContactsListFragment>(
+//                        this, "album", ContactsListFragment.class));
 //        actionBar.addTab(tab);
 
         try {
