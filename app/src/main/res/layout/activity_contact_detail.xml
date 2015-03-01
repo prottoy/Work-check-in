@@ -54,10 +54,10 @@
             android:layout_centerHorizontal="true" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
             android:id="@+id/imageButton"
-            android:background="@drawable/ic_launcher"
+            android:background="@drawable/phone"
             android:layout_alignBottom="@+id/profile_image"
             android:layout_alignLeft="@+id/profile_image"
             android:layout_alignStart="@+id/profile_image"

@@ -1,8 +1,8 @@
 package com.green_red.workCheckin;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +16,7 @@ import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
 
-public class Settings extends ActionBarActivity {
+public class Settings extends Activity {
     public static final String MY_PREFS_NAME = "gnrcredentials";
 
     @Override
@@ -75,7 +75,7 @@ public class Settings extends ActionBarActivity {
 
         menu.findItem(R.id.action_settings).setIcon(
                 new IconDrawable(this, Iconify.IconValue.fa_gear).
-                        colorRes(R.color.white).
+                        colorRes(R.color.red).
                         actionBarSize());
 
         menu.findItem(R.id.action_checkin).setIcon(
@@ -83,7 +83,7 @@ public class Settings extends ActionBarActivity {
                         colorRes(R.color.white).
                         actionBarSize());
 
-        menu.findItem(R.id.action_refresh).setIcon(
+        menu.findItem(R.id.action_people).setIcon(
                 new IconDrawable(this, Iconify.IconValue.fa_male).
                         colorRes(R.color.white).
                         actionBarSize());
@@ -109,6 +109,9 @@ public class Settings extends ActionBarActivity {
 
             Intent mapsIntent= new Intent(getApplicationContext(),Location.class);
             startActivity(mapsIntent);
+            finish();
+            return true;
+        }else if(id == R.id.action_people) {
             finish();
             return true;
         }

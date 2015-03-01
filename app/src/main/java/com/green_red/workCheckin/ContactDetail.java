@@ -1,9 +1,9 @@
 package com.green_red.workCheckin;
 
+import android.app.Activity;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
-public class ContactDetail extends ActionBarActivity {
+public class ContactDetail extends Activity {
     String phoneNumber;
 
     @Override
@@ -38,7 +38,7 @@ public class ContactDetail extends ActionBarActivity {
 
         phoneNumber= phoneString;
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setTitle(nameString);
     }
 
@@ -59,9 +59,9 @@ public class ContactDetail extends ActionBarActivity {
                         colorRes(R.color.white).
                         actionBarSize());
 
-        menu.findItem(R.id.action_refresh).setIcon(
+        menu.findItem(R.id.action_people).setIcon(
                 new IconDrawable(this, Iconify.IconValue.fa_male).
-                        colorRes(R.color.white).
+                        colorRes(R.color.red).
                         actionBarSize());
 
         return super.onCreateOptionsMenu(menu);

@@ -1,8 +1,10 @@
 package com.green_red.workCheckin;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.app.ActionBar;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,7 +23,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Contacts extends ActionBarActivity {
+public class Contacts extends Activity {
+    public static final String MY_PREFS_NAME = "gnrcredentials";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class Contacts extends ActionBarActivity {
         setContentView(R.layout.activity_contacts);
 
         final ArrayList<ContactsInfo> contactsArrayList = new ArrayList<ContactsInfo>();
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setTitle("People");
         actionBar.setIcon(R.drawable.ic_launcher);
 
@@ -75,9 +78,6 @@ public class Contacts extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 ContactsInfo item = contactsArrayList.get(position);
-//                Intent callIntent = new Intent(Intent.ACTION_CALL);
-//                callIntent.setData(Uri.parse("tel:" + item.number));
-//                startActivity(callIntent);
 
                 Intent detailIntent= new Intent(getApplicationContext(), ContactDetail.class);
                 detailIntent.putExtra("name",item.name);
@@ -88,6 +88,17 @@ public class Contacts extends ActionBarActivity {
                 Log.v("test:", "clicked");
             }
         });
+
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        String restoredText = prefs.getString("name", null);
+
+        if (restoredText == null) {
+            Toast.makeText(getApplicationContext(), "PLEASE SET YOUR NAME AND EMAIL FIRST!",
+                    Toast.LENGTH_LONG).show();
+
+            Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
+            startActivity(settingsIntent);
+        }
     }
 
 
@@ -103,9 +114,9 @@ public class Contacts extends ActionBarActivity {
                         colorRes(R.color.white).
                         actionBarSize());
 
-        menu.findItem(R.id.action_refresh).setIcon(
+        menu.findItem(R.id.action_people).setIcon(
                 new IconDrawable(this, Iconify.IconValue.fa_male).
-                        colorRes(R.color.white).
+                        colorRes(R.color.red).
                         actionBarSize());
 
         menu.findItem(R.id.action_settings).setIcon(
@@ -129,10 +140,12 @@ public class Contacts extends ActionBarActivity {
             startActivity(settingsIntent);
             return true;
         }else if(id == R.id.action_checkin) {
-            Toast.makeText(getApplicationContext(), "Loading map", Toast.LENGTH_SHORT).show();
-
             Intent mapsIntent= new Intent(getApplicationContext(),Location.class);
             startActivity(mapsIntent);
+
+            return true;
+        }else if(id == R.id.action_people) {
+            finish();
             return true;
         }
 

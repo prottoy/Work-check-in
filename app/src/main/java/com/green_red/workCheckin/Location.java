@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,14 +16,13 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
 
-public class Location extends ActionBarActivity{
+public class Location extends Activity{
     private GoogleMap mMap;
     public static final String MY_PREFS_NAME = "gnrcredentials";
 
@@ -34,7 +31,7 @@ public class Location extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setTitle("Location");
 
         autoCheckIn();
@@ -90,10 +87,10 @@ public class Location extends ActionBarActivity{
 
         menu.findItem(R.id.action_checkin).setIcon(
                 new IconDrawable(this, Iconify.IconValue.fa_map_marker).
-                        colorRes(R.color.white).
+                        colorRes(R.color.red).
                         actionBarSize());
 
-        menu.findItem(R.id.action_refresh).setIcon(
+        menu.findItem(R.id.action_people).setIcon(
                 new IconDrawable(this, Iconify.IconValue.fa_male).
                         colorRes(R.color.white).
                         actionBarSize());
@@ -122,6 +119,9 @@ public class Location extends ActionBarActivity{
         }else if(id == R.id.action_checkin) {
             Intent mapsIntent= new Intent(getApplicationContext(),Location.class);
             startActivity(mapsIntent);
+            finish();
+            return true;
+        }else if(id == R.id.action_people) {
             finish();
             return true;
         }
