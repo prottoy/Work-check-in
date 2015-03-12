@@ -54,24 +54,6 @@ public class ContactsAdapter extends BaseAdapter {
         name.setText(contactinfo.name);
         number.setText(contactinfo.designation);
 
-
-//        Button callBtn = (Button) convertView.findViewById(R.id.callbtn);
-//        callBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                try {
-////                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-////                    callIntent.setData(Uri.parse("tel:" + contactinfo.number));
-////                    activity.startActivity(callIntent);
-//                    Intent detailIntent= new Intent(activity.getApplicationContext(), ContactDetail.class);
-//                    activity.startActivity(detailIntent);
-//
-//                } catch (ActivityNotFoundException activityException) {
-//                    Log.e("Calling a Phone Number", "Call failed", activityException);
-//                }
-//            }
-//        });
-
         return convertView;
     }
 

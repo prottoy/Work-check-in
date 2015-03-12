@@ -76,9 +76,9 @@ public class ContactDetail extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
-            startActivity(settingsIntent);
-            finish();
+//            Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
+//            startActivity(settingsIntent);
+//            finish();
             return true;
         }else if(id == R.id.action_checkin) {
             Toast.makeText(getApplicationContext(), "Loading map", Toast.LENGTH_SHORT).show();
@@ -102,7 +102,7 @@ public class ContactDetail extends Activity {
     }
 
     public void showSettings(View view){
-        Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
-        view.getContext().startActivity(settingsIntent);
+//        Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
+//        view.getContext().startActivity(settingsIntent);
     }
 }

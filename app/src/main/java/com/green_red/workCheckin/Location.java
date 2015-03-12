@@ -63,17 +63,17 @@ public class Location extends Activity{
                 Toast.makeText(getApplicationContext(), "PLEASE SET YOUR NAME AND EMAIL FIRST!",
                         Toast.LENGTH_LONG).show();
 
-                Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
-                startActivity(settingsIntent);
-                finish();
+//                Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
+//                startActivity(settingsIntent);
+//                finish();
             }
         } else {
             Toast.makeText(getApplicationContext(), "PLEASE SET YOUR NAME AND EMAIL FIRST!",
                     Toast.LENGTH_LONG).show();
 
-            Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
-            startActivity(settingsIntent);
-            finish();
+//            Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
+//            startActivity(settingsIntent);
+//            finish();
         }
     }
 
@@ -112,9 +112,9 @@ public class Location extends Activity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
-            startActivity(settingsIntent);
-            finish();
+//            Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
+//            startActivity(settingsIntent);
+//            finish();
             return true;
         }else if(id == R.id.action_checkin) {
             Intent mapsIntent= new Intent(getApplicationContext(),Location.class);
