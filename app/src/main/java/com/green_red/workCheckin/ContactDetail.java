@@ -100,9 +100,4 @@ public class ContactDetail extends Activity {
         callIntent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(callIntent);
     }
-
-    public void showSettings(View view){
-//        Intent settingsIntent= new Intent(getApplicationContext(),Settings.class);
-//        view.getContext().startActivity(settingsIntent);
-    }
 }

@@ -38,8 +38,8 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        EditText nameText   = (EditText)view.findViewById(R.id.nameText);
-        EditText emailText   = (EditText)view.findViewById(R.id.emailText);
+        final EditText nameText   = (EditText)view.findViewById(R.id.nameText);
+        final EditText emailText   = (EditText)view.findViewById(R.id.emailText);
 
         SharedPreferences prefs = getActivity().getSharedPreferences(MY_PREFS_NAME,getActivity().MODE_PRIVATE);
         String restoredText = prefs.getString("name", null);
@@ -59,9 +59,6 @@ public class SettingsFragment extends Fragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText nameText   = (EditText)view.findViewById(R.id.nameText);
-                EditText emailText   = (EditText)view.findViewById(R.id.emailText);
-
                 if (nameText.length()>0 && emailText.length()>0) {
                     SharedPreferences.Editor editor = getActivity().getSharedPreferences(MY_PREFS_NAME, getActivity().MODE_PRIVATE).edit();
                     editor.putString("name", nameText.getText().toString());
