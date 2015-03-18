@@ -25,7 +25,7 @@ public class ContactDetail extends Activity {
         setTheme(android.R.style.Theme_Dialog);
 
         String nameString= getIntent().getStringExtra("name");
-        TextView name= (TextView)findViewById(R.id.nameText);
+        TextView name= (TextView)findViewById(R.id.reasonLeaveText);
         name.setText(nameString);
 
         String designationString= getIntent().getStringExtra("designation");

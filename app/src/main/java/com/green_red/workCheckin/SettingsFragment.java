@@ -38,7 +38,7 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        final EditText nameText   = (EditText)view.findViewById(R.id.nameText);
+        final EditText nameText   = (EditText)view.findViewById(R.id.reasonLeaveText);
         final EditText emailText   = (EditText)view.findViewById(R.id.emailText);
 
         SharedPreferences prefs = getActivity().getSharedPreferences(MY_PREFS_NAME,getActivity().MODE_PRIVATE);
@@ -51,8 +51,6 @@ public class SettingsFragment extends Fragment {
                 nameText.setHint(name);
                 emailText.setHint(email);
             }
-            Toast.makeText(getActivity().getApplicationContext(), "Name: " + name + " Email:" + email,
-                    Toast.LENGTH_LONG).show();
         }
 
         Button saveBtn = (Button) view.findViewById(R.id.savebtn);

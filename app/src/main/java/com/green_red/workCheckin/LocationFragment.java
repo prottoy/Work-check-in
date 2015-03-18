@@ -60,6 +60,7 @@ public class LocationFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        mMap=null;
         super.onDetach();
     }
 

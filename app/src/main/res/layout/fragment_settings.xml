@@ -26,7 +26,7 @@
             android:inputType="textPersonName"
             android:hint="Name"
             android:ems="10"
-            android:id="@+id/nameText"
+            android:id="@+id/reasonLeaveText"
             android:layout_gravity="center_horizontal" />
 
         <EditText

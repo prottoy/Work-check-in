@@ -8,4 +8,20 @@
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.MapFragment"/>
 
+    <IconButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="{fa-info-circle}"
+        android:textSize="30dip"
+        android:shadowColor="@color/white"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="1"
+        android:textColor="@color/black"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:onClick="showCasualLeaveFragment"/>
+
 </RelativeLayout>

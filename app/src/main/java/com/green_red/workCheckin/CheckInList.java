@@ -25,67 +25,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by prottoy on 2/25/15.
+ * Created by prottoy on 3/16/15.
  */
-public class Checkin extends AsyncTask<String, String, String> {
+public class CheckInList extends AsyncTask<String, String, String> {
     static Context context;
 
     @Override
     protected String doInBackground(String... params) {
-        String response= postData(params[0], params[1]);
+        String response= postData();
         String value= null;
 
-        try{
-            try {
-                JSONObject jObj= new JSONObject(response);
-                value= (String)jObj.get("response");
+//        Log.d("response",response);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-
-        Log.d("response", response);
-
+//        try {
+//            JSONObject jObj= new JSONObject(response);
+//            value= (String)jObj.get("response");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
         return value;
     }
 
     protected void onPostExecute(String result) {
-        if (result.equals("success")) {
-            Toast.makeText(context, result,
-                    Toast.LENGTH_LONG).show();
-
-            NotificationManager mNotificationManager =
-                    (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-            // mId allows you to update the notification later on.
-            Notification n = new NotificationCompat.Builder(context)
-                    .setContentTitle("GNR Checkin Noification")
-                    .setContentText("You have successfully checked in to GNR!")
-                    .setSmallIcon(R.drawable.ic_launcher)
-                    .build();
-            mNotificationManager.notify(Integer.parseInt("100"), n);
-        }
+//        if (result.equals("success")) {
+//            Toast.makeText(context, result,
+//                    Toast.LENGTH_LONG).show();
+//
+//            NotificationManager mNotificationManager =
+//                    (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+//            // mId allows you to update the notification later on.
+//            Notification n = new NotificationCompat.Builder(context)
+//                    .setContentTitle("GNR Checkin Notification")
+//                    .setContentText("You have successfully checked in to GNR!")
+//                    .setSmallIcon(R.drawable.ic_launcher)
+//                    .build();
+//            mNotificationManager.notify(Integer.parseInt("100"), n);
+//        }
     }
 
 
-    public String postData(String name, String email) {
+    public String postData() {
         String jresponse= null;
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(
-                "http://www.green-red.com/square/checkin");
+                "http://www.green-red.com/square/pages/checkintoday");
 
         try {
             // Add your data
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-            nameValuePairs.add(new BasicNameValuePair("name",
-                    name));
-            nameValuePairs.add(new BasicNameValuePair("email",
-                    email));
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//            nameValuePairs.add(new BasicNameValuePair("name",
+//                    name));
+//            nameValuePairs.add(new BasicNameValuePair("email",
+//                    email));
+//            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             // Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
@@ -93,11 +87,16 @@ public class Checkin extends AsyncTask<String, String, String> {
             String json_string = EntityUtils.toString(response.getEntity());
             jresponse= json_string;
 
+            Log.d("Checkinlist", json_string);
+
         } catch (ClientProtocolException e) {
             // TODO Auto-generated catch block
         } catch (IOException e) {
             // TODO Auto-generated catch block
         }
+
+
+
         return jresponse;
     }
 }

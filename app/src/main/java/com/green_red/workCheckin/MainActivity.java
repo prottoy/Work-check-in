@@ -3,13 +3,16 @@ package com.green_red.workCheckin;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
@@ -18,17 +21,21 @@ import com.green_red.workCheckin.ContactsFragment.OnFragmentInteractionListener;
 public class MainActivity extends FragmentActivity implements OnFragmentInteractionListener{
     public static final String MY_PREFS_NAME = "gnrcredentials";
     public static FragmentManager fragmentManager;
+    public static final int NUM_ITEMS=10;
+    public boolean mShowingBack= false;
 
-    private LocationFragment locationFragment;
+    public Menu globalMenu;
+    private LocationFragment locationFragment= new LocationFragment();
     private ContactsFragment contactsFragment= new ContactsFragment();
     private SettingsFragment settingsFragment= new SettingsFragment();
-    public Menu globalMenu;
+    private CasualLeaveFragment casualLeaveFragment= new CasualLeaveFragment();
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts);
+        setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getActionBar();
         actionBar.setTitle("Work Check-in");
@@ -36,9 +43,20 @@ public class MainActivity extends FragmentActivity implements OnFragmentInteract
 
         fragmentManager=getFragmentManager();
         showContactsFragment();
+//        showCasualLeaveFragment();
+
+        CheckInList cin = new CheckInList();
+        CheckInList.context = getApplicationContext();
+        cin.execute("", "");
+
     }
 
-
+    private void showCasualLeaveFragment() {
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        RemoveLocationFragment(ft);
+        ft.replace(R.id.placeholder,casualLeaveFragment);
+        ft.commit();
+    }
 
 
     @Override
@@ -144,8 +162,8 @@ public class MainActivity extends FragmentActivity implements OnFragmentInteract
     }
 
     private void showLocationFragment() {
-        locationFragment = new LocationFragment();
         FragmentTransaction ft = fragmentManager.beginTransaction();
+        RemoveLocationFragment(ft);
         ft.replace(R.id.placeholder, locationFragment);
         ft.commit();
     }
@@ -174,4 +192,67 @@ public class MainActivity extends FragmentActivity implements OnFragmentInteract
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    private void sendEmail(String[] emails, String subject, String body) {
+        final Intent emailIntent = new Intent( Intent.ACTION_SEND);
+        emailIntent.setType("plain/text");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL,
+                emails);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,
+                subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT,
+                body);
+        startActivity(Intent.createChooser(
+                emailIntent, "Send mail..."));
+    }
+
+    public void askForLeave(View view){
+        String[] emails={"internal@gandr.com.bd","shabbir@gandr.com.bd"};
+        String subject= "Casual leave request";
+        String body="Please grant me a casual leave today.";
+
+        sendEmail(emails, subject,body);
+    }
+
+    public void showCasualLeaveFragment(View view) {
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        RemoveLocationFragment(ft);
+        ft.setCustomAnimations(R.animator.card_flip_right_in, R.animator.card_flip_right_out,R.animator.card_flip_left_in, R.animator.card_flip_left_out);
+        ft.replace(R.id.placeholder,casualLeaveFragment );
+        ft.commit();
+
+//        if (mShowingBack) {
+//            fragmentManager.popBackStack();
+//            return;
+//        }
+//
+//        // Flip to the back.
+//        mShowingBack = true;
+//
+//        // Create and commit a new fragment transaction that adds the fragment for the back of
+//        // the card, uses custom animations, and is part of the fragment manager's back stack.
+//        fragmentManager
+//                .beginTransaction()
+//
+//                        // Replace the default fragment animations with animator resources representing
+//                        // rotations when switching to the back of the card, as well as animator
+//                        // resources representing rotations when flipping back to the front (e.g. when
+//                        // the system Back button is pressed).
+//                .setCustomAnimations(
+//                        R.animator.card_flip_right_in, R.animator.card_flip_right_out,
+//                        R.animator.card_flip_left_in, R.animator.card_flip_left_out)
+//
+//                        // Replace any fragments currently in the container view with a fragment
+//                        // representing the next page (indicated by the just-incremented currentPage
+//                        // variable).
+//                .replace(R.id.placeholder, casualLeaveFragment)
+//
+//                        // Add this transaction to the back stack, allowing users to press Back
+//                        // to get to the front of the card.
+//                .addToBackStack(null)
+//
+//                        // Commit the transaction.
+//                .commit();
+    }
+
 }
